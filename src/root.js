@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
+// PAGES
+import PagesNamePage from './pages/PagesName';
+
 function Index() {
   return <h2>Home</h2>;
 }
@@ -16,7 +19,7 @@ function Users() {
 function AppRouter() {
   return (
     <BrowserRouter>
-        <Route path="/" exact component={Index} />
+        <Route path="/" exact component={PagesNamePage} />
         <Route path="/about/" component={About} />
         <Route path="/users/" component={Users} />
     </BrowserRouter>
