@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import Header from "./components/Header";
 
-// PAGES
+
 import PagesNamePage from './pages/PagesName';
 
 function Index() {
@@ -15,6 +16,7 @@ function About() {
 function Users() {
   return <h2>Users</h2>;
 }
+
 
 function AppRouter() {
   return (
