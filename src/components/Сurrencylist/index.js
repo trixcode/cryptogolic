@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import List from '@material-ui/core/List';
@@ -14,6 +15,10 @@ import Input from '@material-ui/core/Input';
 
 
 const СurrencyListPage = props => {
+  const { history } = props;
+  const goToDetailCurrencyPage =()=>{
+    history.push('./currency')
+  }
   const currencys = [{
         id: 1,
         currency: 'bitcoin',
@@ -80,8 +85,8 @@ const СurrencyListPage = props => {
               <ListItemText>change</ListItemText>
             </ListItem>
              {currencys.map(value => (
-          <ListItem className={classes.listItem} key={value.id} button>
-            <ListItemAvatar>
+          <ListItem onClick={goToDetailCurrencyPage} className={classes.listItem} key={value.id} button>
+            <ListItemAvatar >
               <Avatar
                 alt={`${value.icon}`}
                 src={`${value.icon}`}
@@ -101,4 +106,4 @@ const СurrencyListPage = props => {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(СurrencyListPage);
+export default withRouter(withStyles(styles)(СurrencyListPage));
