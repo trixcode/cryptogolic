@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import styles from './styles'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,7 +16,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-
+import styles from './styles'
 
 class Header extends Component {
 
@@ -29,6 +29,11 @@ class Header extends Component {
       isDrawerOpen: open,
     });
   };
+
+  onClickHeader = () => {
+    const { history } = this.props
+    history.push('/')
+  }
 
   render() {
     const { classes } = this.props
@@ -65,10 +70,9 @@ class Header extends Component {
               <MenuIcon />
             </IconButton>
 
-            <Typography variant="h6" color="inherit">
+            <Typography variant="h6" color="inherit" onClick={this.onClickHeader}>
               Cryptogolic
             </Typography>
-
             <IconButton color="inherit">
               <SearchIcon />
             </IconButton>
@@ -98,4 +102,4 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Header);
+export default withRouter(withStyles(styles)(Header));
