@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter }  from 'react-router';
 import Card from '@material-ui/core/Card';
 import  withStyles  from '@material-ui/core/styles/withStyles';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,9 +10,14 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import styles from './styles';
 
+
 class CurrencyAbout extends Component {
+  goToNewsPage = () => {
+    const { history } = this.props;
+    history.push('/newsdetail');
+  }
   render(){
-  const { classes } = this.props;
+  const { classes} = this.props;
     return (
       <Card className={classes.card}>
         <CardActionArea>
@@ -34,7 +40,7 @@ class CurrencyAbout extends Component {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="medium" color="primary">
+          <Button size="medium" color="primary" onClick={this.goToNewsPage}>
             Official Website
           </Button>
         </CardActions>
@@ -43,4 +49,4 @@ class CurrencyAbout extends Component {
   }
 }
 
-  export default withStyles(styles)(CurrencyAbout);
+  export default withRouter(withStyles(styles)(CurrencyAbout));

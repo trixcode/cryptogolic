@@ -22,6 +22,7 @@ function TabContainer(props) {
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
 class CurrencyStatistic extends Component {
   state = {
     value: 0
@@ -44,7 +45,7 @@ class CurrencyStatistic extends Component {
           title="Bitcoin Price"
         />
         <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" color='primary'>
           <Tabs value={value} onChange={this.handleChange}>
             <Tab label="24h" />
             <Tab label="1months" />
@@ -65,7 +66,7 @@ class CurrencyStatistic extends Component {
         <h4>All time High</h4>
         <p>$1.8K</p>
         </TabContainer>}
-        {value === 1 && <TabContainer>Item Two
+        {value === 1 && <TabContainer>
           <div>
           <img width='100%' alt='statistic' src={statisticExample}/>
         </div>
@@ -78,7 +79,7 @@ class CurrencyStatistic extends Component {
         <h4>All time High</h4>
         <p>$3.8K</p>
         </TabContainer>}
-        {value === 2 && <TabContainer>Item Three
+        {value === 2 && <TabContainer>
           <div>
           <img width='100%' alt='statistic' src={statisticExample}/>
         </div>
@@ -91,7 +92,7 @@ class CurrencyStatistic extends Component {
         <h4>All time High</h4>
         <p>$10.8K</p>
         </TabContainer>}
-        {value === 3 && <TabContainer>Item Four
+        {value === 3 && <TabContainer>
           <div>
           <img width='100%' alt='statistic' src={statisticExample}/>
         </div>
