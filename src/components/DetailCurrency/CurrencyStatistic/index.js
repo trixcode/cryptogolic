@@ -22,6 +22,7 @@ function TabContainer(props) {
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
 class CurrencyStatistic extends Component {
   state = {
     value: 0
