@@ -1,6 +1,6 @@
 const styles = theme => ({
   card: {
-    width: '375px',
+    width: 375,
   },
   cardContainer: {
     width: '100%'
@@ -10,7 +10,9 @@ const styles = theme => ({
     objectFit: 'cover',
   },
   tag:{
-    color: 'gray',
-
+    color: 'grey',
+    fontStyle: 'italic',
+    fontSize: '13px'
   }
 });
+export default styles;
