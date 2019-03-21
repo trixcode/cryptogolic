@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import DetailCurrrencyPage from "./pages/DetailCurrencyPage";
 import Header from "./components/Header";
-
-
 import PagesNamePage from './pages/PagesName';
 
 function Index() {
@@ -22,7 +21,7 @@ function AppRouter() {
   return (
     <BrowserRouter>
         <Route path="/" exact component={PagesNamePage} />
-        <Route path="/about/" component={About} />
+        <Route path="/currency/" component={DetailCurrrencyPage} />
         <Route path="/users/" component={Users} />
     </BrowserRouter>
   );
