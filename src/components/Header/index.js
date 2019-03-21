@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styles from './styles'
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -58,7 +58,7 @@ class Header extends Component {
     const { isDrawerOpen } = this.state
 
     return (
-      <header className={classes.root}>
+      <Fragment>
         <AppBar position="static">
           <Toolbar className={classes.headerContainer}>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer(true)}>
@@ -74,6 +74,7 @@ class Header extends Component {
             </IconButton>
           </Toolbar>
         </AppBar>
+
         <SwipeableDrawer
           open={isDrawerOpen}
           onClose={this.toggleDrawer(false)}
@@ -88,12 +89,10 @@ class Header extends Component {
             {sideList}
           </div>
         </SwipeableDrawer>
-      </header>
-
+      </Fragment>
     )
   }
 }
-
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
