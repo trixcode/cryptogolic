@@ -1,8 +1,10 @@
 const styles = theme => ({
-  price: {
-    color: 'red',
-    fontSize: '30px',
-  }
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
+  card: {
+  width: '100%',
+  },
 });
 
 export default styles;

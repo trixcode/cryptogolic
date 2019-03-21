@@ -1,14 +1,15 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
 import CurrencyStatistic from '../../components/DetailCurrency/CurrencyStatistic';
 import CurrencyAbout from '../../components/DetailCurrency/CurrencyAbout';
 
 class DetailCurrrencyPage extends Component{
   render(){
     return(
-      <Fragment>
+      <Grid container>
       <CurrencyStatistic/>
       <CurrencyAbout/>
-      </Fragment>
+      </Grid>
     )
   }
 }
