@@ -1,14 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Route,  } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import СurrencyListPage from './pages/СurrencyList/index'
-
-// function Index() {
-//   return <h2>Home</h2>;
-// }
-
-function About() {
-  return <h2>About</h2>;
-}
+import DetailCurrrencyPage from "./pages/DetailCurrencyPage";
 
 function Users() {
   return <h2>Users</h2>;
@@ -16,13 +9,11 @@ function Users() {
 
 function AppRouter() {
   return (
-    <Router>
-      
+    <BrowserRouter>
         <Route path="/" exact component={СurrencyListPage} />
-        <Route path="/about/" component={About} />
+        <Route path="/currency/" component={DetailCurrrencyPage} />
         <Route path="/users/" component={Users} />
-    
-    </Router>
+    </BrowserRouter>
   );
 }
 
