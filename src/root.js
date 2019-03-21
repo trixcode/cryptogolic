@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+
+import HomePage from './pages/HomePage';
 import NewsDetailPage from './pages/NewsDetailPage';
 import NewsPage from './pages/NewsPage';
-import СurrencyListPage from './pages/СurrencyList/index'
 import DetailCurrrencyPage from "./pages/DetailCurrencyPage";
 
 function AppRouter() {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={СurrencyListPage} />
+      <Route path="/" exact component={HomePage} />
       <Route path="/currency/" component={DetailCurrrencyPage} />
       <Route path="/newsdetail/" exact component={NewsDetailPage} />
       <Route path="/news/" component={NewsPage} />
