@@ -49,4 +49,4 @@ class CurrencyAbout extends Component {
   }
 }
 
-  export default withRouter(withStyles(styles)(CurrencyAbout));
+export default withRouter(withStyles(styles)(CurrencyAbout));

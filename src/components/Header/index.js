@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
@@ -17,13 +18,17 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import styles from './styles'
+import {fetchCurrenciesStart} from '../../store/main/actions';
 
 class Header extends Component {
-
   state = {
     isDrawerOpen: false,
   }
 
+  componentWillMount() {
+    const { fetchCurrenciesStartAction } = this.props;
+    fetchCurrenciesStartAction();
+  }
   toggleDrawer = (open) => () => {
     this.setState({
       isDrawerOpen: open,
@@ -102,4 +107,10 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRouter(withStyles(styles)(Header));
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCurrenciesStartAction: () => dispatch(fetchCurrenciesStart())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(withRouter(withStyles(styles)(Header)));
