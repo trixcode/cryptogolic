@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { withRouter } from "react-router";
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
@@ -6,32 +7,28 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import styles from './styles';
-import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Button from '@material-ui/core/Button';
+
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 
 
 class NewsDetail extends React.Component {
   state = { expanded: false };
 
+
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
+  onClickBack = () =>{
+    const{history} = this.props
+    history.goBack()
+  }
   render() {
     const { classes } = this.props;
 
@@ -44,12 +41,12 @@ class NewsDetail extends React.Component {
           subheader="September 14, 2016"
           className={classes.title}>
         </CardHeader>
-        <IconButton label="return" className={classes.button}>
+        <IconButton label="return" onClick={this.onClickBack} className={classes.button}>
           <KeyboardReturn fontSize="large" />
         </IconButton>
         <CardMedia
           className={classes.media}
-          image="http://www.illuminea.com/wp-content/uploads/uploads/2009/02/500px-android-logosvg-300x300.png"
+          image="http://www.illuminea.com/wp-content/uploads/uploads/2009/02/500px-android-logosvg-300x300.png"n
           title="Paella dish"
           subheaderTypographyProps="align: 'right'"
         />
@@ -100,4 +97,4 @@ NewsDetail.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(NewsDetail);
+export default withRouter(withStyles(styles)(NewsDetail));
