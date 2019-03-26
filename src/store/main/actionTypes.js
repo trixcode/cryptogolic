@@ -1,0 +1,2 @@
+export const SET_TEST_NAME = 'SET_TEST_NAME';
+export const SET_DEFAULT_TEST_NAME = 'SET_DEFAULT_TEST_NAME';

@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import AppRouter from './root'
-import Theme from './theme'
+import AppRouter from './root';
+import Theme from './theme';
+import store from './store';
 
 const reanderApp = () => (
-  <MuiThemeProvider theme={Theme}>
-    <CssBaseline />
-    <AppRouter />
-  </MuiThemeProvider>
+  <Provider store={store}>
+    <MuiThemeProvider theme={Theme}>
+      <CssBaseline />
+      <AppRouter />
+    </MuiThemeProvider>
+  </Provider>
 );
 
 ReactDOM.render(reanderApp(), document.getElementById('root'));
