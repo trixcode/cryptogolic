@@ -18,7 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import styles from './styles'
-import {fetchCurrenciesStart} from '../../store/main/actions';
+import { fetchCurrenciesStart, fetchLiveStart, fetchConvertStart, fetchDataStart } from '../../store/main/actions';
 
 class Header extends Component {
   state = {
@@ -26,9 +26,13 @@ class Header extends Component {
   }
 
   componentWillMount() {
-    const { fetchCurrenciesStartAction } = this.props;
+    const { fetchCurrenciesStartAction, fetchLiveStartAction, fetchConvertStartAction, fetchDataStartAction } = this.props;
     fetchCurrenciesStartAction();
+    fetchLiveStartAction();
+    fetchConvertStartAction();
+    fetchDataStartAction();
   }
+
   toggleDrawer = (open) => () => {
     this.setState({
       isDrawerOpen: open,
@@ -41,8 +45,11 @@ class Header extends Component {
   }
 
   render() {
-    const { classes } = this.props
-
+    const { classes, currencies, live, convert, data } = this.props
+    console.log(currencies);
+    console.log(live);
+    console.log(convert);
+    console.log(data);
     const sideList = (
       <div className={classes.list}>
         <List>
@@ -107,10 +114,20 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = store => ({
+  currencies: store.currencies,
+  live: store.live,
+  convert: store.convert,
+  data: store.data,
+})
+
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCurrenciesStartAction: () => dispatch(fetchCurrenciesStart())
+    fetchCurrenciesStartAction: () => dispatch(fetchCurrenciesStart()),
+    fetchLiveStartAction: () => dispatch(fetchLiveStart()),
+    fetchConvertStartAction: () => dispatch(fetchConvertStart()),
+    fetchDataStartAction: () => dispatch(fetchDataStart())
   }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(withStyles(styles)(Header)));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(Header)));
