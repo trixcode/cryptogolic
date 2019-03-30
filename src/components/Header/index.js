@@ -41,8 +41,9 @@ class Header extends Component {
   }
 
   render() {
-    const { classes } = this.props
-
+    const { classes, currencies } = this.props
+    console.log(currencies)
+    
     const sideList = (
       <div className={classes.list}>
         <List>
@@ -107,10 +108,16 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+
+const mapStateToProps = store => ({
+  currencies: store.currencies,
+  live: store.live
+})
+
 const mapDispatchToProps = dispatch => {
   return {
     fetchCurrenciesStartAction: () => dispatch(fetchCurrenciesStart())
   }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(withStyles(styles)(Header)));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(Header)));
