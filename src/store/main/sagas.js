@@ -43,9 +43,9 @@ const mergeObjects = () => {
    Object.keys(fakeCurrencies).map(key => {
       console.log('asdad')
       const change = fakeCurrenciesLive.rates[key] - fakeCurrenciesHistorical.rates[key];
-      fakeCurrencies[key].rates = fakeCurrenciesLive.rates[key];
+      fakeCurrencies[key].rates = (fakeCurrenciesLive.rates[key]).toFixed(2);
       fakeCurrencies[key].change = change
-      fakeCurrencies[key].change_pct = change * 100 / fakeCurrenciesLive.rates[key]
+      fakeCurrencies[key].change_pct = (change * 100 / fakeCurrenciesLive.rates[key]).toFixed(2)
    })
    return fakeCurrencies
 }

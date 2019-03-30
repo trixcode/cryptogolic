@@ -23,6 +23,7 @@ import {fetchCurrenciesStart} from '../../store/main/actions';
 class Header extends Component {
   state = {
     isDrawerOpen: false,
+    isSearchClicked: false,
   }
 
   componentWillMount() {
@@ -37,7 +38,19 @@ class Header extends Component {
 
   onClickHeader = () => {
     const { history } = this.props
-    history.push('/')
+    history.push('/');
+  }
+
+  onClickOutside = () => {
+     this.setState({
+      isSearchClicked: false,
+    })
+  }
+
+  onClickSearch = () => {
+    this.setState({
+      isSearchClicked: true,
+    })
   }
 
   render() {
@@ -79,9 +92,18 @@ class Header extends Component {
             <Typography variant="h6" color="inherit" onClick={this.onClickHeader}>
               Cryptogolic
             </Typography>
-            <IconButton color="inherit">
+
+            {
+            !this.state.isSearchClicked ? (
+            <IconButton color="inherit" onClick={this.onClickSearch}>
               <SearchIcon />
             </IconButton>
+            ) : (
+            <div className={classes.searchDiv} onBlur={this.onClickOutside}>
+              <input type="text" placeholder="search" className={classes.searchInput}></input>
+              <button className={classes.searchButton}><SearchIcon className={classes.searchIcon} /></button>
+            </div>)
+            }
           </Toolbar>
         </AppBar>
 
