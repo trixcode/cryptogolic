@@ -19,39 +19,6 @@ const СurrencyListPage = props => {
   const goToDetailCurrencyPage = () => {
     history.push('./currency')
   }
-  const currencys = [{
-    id: 1,
-    currency: 'bitcoin',
-    price: '3040.50',
-    change: '2.5',
-    icon: 'https://static.coinpaprika.com/coin/btc-bitcoin/logo.png?rev=10557311'
-  }, {
-    id: 2,
-    currency: 'bitcoin',
-    price: '3040.50',
-    change: '2.5',
-    icon: 'https://static.coinpaprika.com/coin/btc-bitcoin/logo.png?rev=10557311'
-  }, {
-    id: 3,
-    currency: 'bitcoin',
-    price: '3040.50',
-    change: '2.5',
-    icon: 'https://static.coinpaprika.com/coin/btc-bitcoin/logo.png?rev=10557311'
-  }, {
-    id: 4,
-    currency: 'bitcoin',
-    price: '3040.50',
-    change: '2.5',
-    icon: 'https://static.coinpaprika.com/coin/btc-bitcoin/logo.png?rev=10557311'
-  }, {
-    id: 5,
-    currency: 'bitcoin',
-    price: '3040.50',
-    change: '2.5',
-    icon: 'https://static.coinpaprika.com/coin/btc-bitcoin/logo.png?rev=10557311'
-  }]
-
-
 
   return (
     <List dense className={classes.root}>
