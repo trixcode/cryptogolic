@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -39,6 +39,9 @@ class Header extends Component {
   onClickHeader = () => {
     const { history } = this.props
     history.push('/');
+    this.setState({
+      isSearchClicked: false,
+    })
   }
 
   onClickOutside = () => {
@@ -53,6 +56,17 @@ class Header extends Component {
     })
   }
 
+  onTypeSearch = (event) => {
+    const inputValue = event.target.value
+    const regex = new RegExp((`\\b${inputValue}`, 'gi')) 
+
+  }
+
+  burgerMenu = (text) => {
+    const { history } = this.props
+    history.push(`${text}`);
+  }
+  
   render() {
     const { classes, currencies } = this.props
     console.log(currencies)
@@ -61,7 +75,7 @@ class Header extends Component {
       <div className={classes.list}>
         <List>
           {['Log in', 'Sign Up', 'Titles'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem key={text} /*onClick={this.burgerMenu(text)}*/>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -100,8 +114,7 @@ class Header extends Component {
             </IconButton>
             ) : (
             <div className={classes.searchDiv} onBlur={this.onClickOutside}>
-              <input type="text" placeholder="search" className={classes.searchInput}></input>
-              <button className={classes.searchButton}><SearchIcon className={classes.searchIcon} /></button>
+              <input type="text" placeholder="__" onKeyDown={this.onTypeSearch} className={classes.searchInput}></input>
             </div>)
             }
           </Toolbar>
