@@ -9,10 +9,31 @@ const styles = theme => ({
     // ⚠️ object-fit is not supported by IE 11.
     objectFit: 'cover',
   },
-  tag:{
+  date:{
     color: 'grey',
     fontStyle: 'italic',
-    fontSize: '13px'
-  }
+    fontSize: '10px',
+
+  },
+  titleOfCard: {
+    fontWeight: '700',
+    fontSize: '18px'
+  },
+  shortDesc:{
+    fontSize: '12px',
+  
+  },
+  likesOfNews:{
+    color: 'grey',
+    fontStyle: 'italic',
+    fontSize: '10px',
+  },
+  daysAndComments:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: '10px'
+  },
+ 
 });
 export default styles;

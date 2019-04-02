@@ -23,84 +23,26 @@ function News(props) {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography className={classes.textOfCard} component="p">
+          <Typography className={classes.titleOfCard} component="p">
+            This Short Animation Might Make You Think Twice About Taxes
+          </Typography>
+          <Typography className={classes.shortDesc} component="p">
+            This Short Animation Might Make You Think Twice About Taxes
           This Short Animation Might Make You Think Twice About Taxes
           </Typography>
-          <Typography className={classes.tag} component="h4">
-            News | 5 day ago
+          <div className={classes.daysAndComments}>
+            <Typography className={classes.date} component="p">
+              News | 5 day ago
           </Typography>
-        </CardContent>                                                                    
-      </CardActionArea>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          className={classes.media}
-          height="140"
-          image="https://upload.wikimedia.org/wikipedia/commons/1/1b/Square_200x200.png "
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography className={classes.textOfCard} component="p">
-          This Short Animation Might Make You Think Twice About Taxes
+            <Typography className={classes.likesOfNews}>
+              Comments
           </Typography>
-          <Typography className={classes.tag} component="h4">
-            News | 5 day ago
-          </Typography>
-        </CardContent>                                                                    
-      </CardActionArea>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          className={classes.media}
-          height="140"
-          image="https://upload.wikimedia.org/wikipedia/commons/1/1b/Square_200x200.png "
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography className={classes.textOfCard} component="p">
-          This Short Animation Might Make You Think Twice About Taxes
-          </Typography>
-          <Typography className={classes.tag} component="h4">
-            News | 5 day ago
-          </Typography>
-        </CardContent>                                                                    
-      </CardActionArea>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          className={classes.media}
-          height="140"
-          image="https://upload.wikimedia.org/wikipedia/commons/1/1b/Square_200x200.png "
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography className={classes.textOfCard} component="p">
-          This Short Animation Might Make You Think Twice About Taxes
-          </Typography>
-          <Typography className={classes.tag} component="h4">
-            News | 5 day ago
-          </Typography>
-        </CardContent>                                                                    
-      </CardActionArea>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          className={classes.media}
-          height="140"
-          image="https://upload.wikimedia.org/wikipedia/commons/1/1b/Square_200x200.png "
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography className={classes.textOfCard} component="p">
-          This Short Animation Might Make You Think Twice About Taxes
-          </Typography>
-          <Typography className={classes.tag} component="h4">
-            News | 5 day ago
-          </Typography>
-        </CardContent>                                                                    
+          </div>
+
+        </CardContent>
       </CardActionArea>
     </Card>
-    
+
   );
 }
 
