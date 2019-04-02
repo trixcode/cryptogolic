@@ -1,6 +1,7 @@
 const styles = theme => ({
 	card: {
 		maxWidth: 400,
+		position: 'relative'
 	},
 	media: {
 		height: 300,
@@ -29,9 +30,6 @@ const styles = theme => ({
 	button: {
 		position: 'absolute',
 		top: 0
-	},
-	card: {
-		position: 'relative'
 	},
 	text: {
 		margin: '10px'
