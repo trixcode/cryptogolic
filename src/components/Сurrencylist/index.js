@@ -19,12 +19,11 @@ const СurrencyListPage = props => {
   const goToDetailCurrencyPage = () => {
     history.push('./currency')
   }
-
+ 
   return (
     <List dense className={classes.root}>
-      <div className={classes.pageTitle}>
-        <h4>Top 100 Cryptocurrencies by Market Cap</h4>
-      </div>
+      <h4 className={classes.currencyTitle}>Top 100 Cryptocurrencies by Market Cap</h4>
+      <ListItem className={classes.formContaner}>
       <FormControl className={classes.formControl}>
         <NativeSelect defaultValue={10}
           input={<Input
@@ -46,11 +45,12 @@ const СurrencyListPage = props => {
           <option value={30}>price</option>
         </NativeSelect>
       </FormControl>
-      <ListItem className={classes.listItem}>
-        <ListItemText className={classes.currency}>currency</ListItemText>
-        <ListItemText>price</ListItemText>
-        <ListItemText>change</ListItemText>
       </ListItem>
+      <div className={classes.listItemList}>
+        <span>currency</span>
+        <span>price</span>
+        <span>change</span>
+      </div>
       {Object.keys(currencies).map(key => (
         <ListItem onClick={goToDetailCurrencyPage} className={classes.listItem} key={key} button>
           <ListItemAvatar >
@@ -60,14 +60,14 @@ const СurrencyListPage = props => {
             />
           </ListItemAvatar>
           <ListItemText primary={currencies[key].name} />
-          <ListItemText primary={currencies[key].rates + ' $'}/>
-          <ListItemText primary={currencies[key].change_pct + ' %'} />
+          <ListItemText className={classes.rates} primary={currencies[key].rates + ' $'}/>
+          <span className={classes.redPct}>{currencies[key].change_pct + ' %'} </span>  
         </ListItem>
       ))}
     </List>
   );
+  
 }
-
 
 СurrencyListPage.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -77,7 +77,5 @@ const СurrencyListPage = props => {
 const mapStateToProps = store => ({
   currencies: store.currencies,
 })
-
-
 
 export default connect(mapStateToProps, null)(withRouter(withStyles(styles)(СurrencyListPage)));
