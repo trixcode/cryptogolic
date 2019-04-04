@@ -60,13 +60,12 @@ class Header extends Component {
 
   onTypeSearch = (event) => {
     const inputValue = event.target.value
-    const regex = new RegExp((`\\b${inputValue}`, 'gi')) 
-
   }
 
   burgerMenu = (text) => {
     const { history } = this.props
-    history.push(`${text}`);
+    const link = text.replace(/\s/g, '')
+    history.push(link);
   }
   
   render() {
@@ -76,20 +75,13 @@ class Header extends Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          {['Log in', 'Sign Up', 'Titles'].map((text, index) => (
-            <ListItem key={text} /*onClick={this.burgerMenu(text)}*/>
+          {['Log in', 'Sign Up', 'News', 'About us', 'Contact us', 'Reclame' ].map((text, index) => (
+            <Fragment>
+            <ListItem key={text} onClick={() => this.burgerMenu(text)}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['About us', 'Contact us', 'Reclame'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+            <Divider /></Fragment>
           ))}
         </List>
       </div>
@@ -116,7 +108,7 @@ class Header extends Component {
             </IconButton>
             ) : (
             <div className={classes.searchDiv} onBlur={this.onClickOutside}>
-              <input type="text" placeholder="__" onKeyDown={this.onTypeSearch} className={classes.searchInput}></input>
+              <input type="text" placeholder="search" onChange={this.onTypeSearch} className={classes.searchInput}></input>
             </div>)
             }
           </Toolbar>

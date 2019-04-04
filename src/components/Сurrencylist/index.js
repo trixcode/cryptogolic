@@ -13,44 +13,42 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Input from '@material-ui/core/Input';
 
-
 const СurrencyListPage = props => {
   const { history, classes, currencies } = props;
   const goToDetailCurrencyPage = () => {
     history.push('./currency')
   }
- 
   return (
     <List dense className={classes.root}>
       <h4 className={classes.currencyTitle}>Top 100 Cryptocurrencies by Market Cap</h4>
       <ListItem className={classes.formContaner}>
-      <FormControl className={classes.formControl}>
-        <NativeSelect defaultValue={10}
-          input={<Input
-            name="name"
-            id="uncontrolled-native" />}>
-          <option value={10}>usd</option>
-          <option value={20}>kgz</option>
-          <option value={30}>ruble</option>
-        </NativeSelect>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <NativeSelect defaultValue={0}
-          input={<Input
-            name="name"
-            id="uncontrolled-native" />}>
-          <option value={0}>filters</option>
-          <option value={10}>name</option>
-          <option value={20}>date</option>
-          <option value={30}>price</option>
-        </NativeSelect>
-      </FormControl>
+        <FormControl className={classes.formControl}>
+          <NativeSelect defaultValue={10}
+            input={<Input
+              name="name"
+              id="uncontrolled-native" />}>
+            <option value={10}>usd</option>
+            <option value={20}>kgz</option>
+            <option value={30}>ruble</option>
+          </NativeSelect>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <NativeSelect defaultValue={0}
+            input={<Input
+              name="name"
+              id="uncontrolled-native" />}>
+            <option value={0}>filters</option>
+            <option value={10}>name</option>
+            <option value={20}>date</option>
+            <option value={30}>price</option>
+          </NativeSelect>
+        </FormControl>
       </ListItem>
-      <div className={classes.listItemList}>
-        <span>currency</span>
-        <span>price</span>
-        <span>change</span>
-      </div>
+      <ListItem className={classes.listItemList} >
+      <ListItemText className={classes.listTitleCurrency} primary={'currency'} />
+      <ListItemText className={classes.rates} primary={'price'}/>
+      <span className={classes.listTitleChange}> {'change'} </span>  
+      </ListItem>
       {Object.keys(currencies).map(key => (
         <ListItem onClick={goToDetailCurrencyPage} className={classes.listItem} key={key} button>
           <ListItemAvatar >
@@ -59,14 +57,13 @@ const СurrencyListPage = props => {
               src={currencies[key].icon_url}
             />
           </ListItemAvatar>
-          <ListItemText primary={currencies[key].name} />
+          <ListItemText className={classes.currenciesName} primary={currencies[key].name} />
           <ListItemText className={classes.rates} primary={currencies[key].rates + ' $'}/>
-          <span className={classes.redPct}>{currencies[key].change_pct + ' %'} </span>  
+          <span className={currencies[key].change_pct<0? classes.redPct : classes.greenPct }>{currencies[key].change_pct + ' %'} </span>  
         </ListItem>
       ))}
     </List>
   );
-  
 }
 
 СurrencyListPage.propTypes = {

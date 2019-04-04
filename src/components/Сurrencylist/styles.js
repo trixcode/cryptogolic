@@ -1,16 +1,13 @@
-
 const styles = theme => ({
-   
     change: {
         color: 'red',
     },
-   
     formControl: {
        marginRight: '10px',     
-      },
-      currencyTitle: {
+    },
+    currencyTitle: {
         color: '#3f51b5',
-      },
+    },
     root: {
         display: 'flex',
         flexDirection: 'column',
@@ -24,30 +21,41 @@ const styles = theme => ({
         display: 'flex',
     },
     formContaner: {
+        marginBottom: '10px',
+        padding: '0',
         display: 'flex',
         justifyContent: 'flex-end',
     },
     listItemList: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        width: '90%',
-        backgroundColor: '#3f51b5',
-        color: 'white',
-        fontSize: '0.8em',
-        padding: '10px 0px',     
+        padding: '10px 20px',
+        backgroundColor: '#3f51b5',   
+    },
+    listTitleCurrency: { 
+        marginLeft: '60px',
+        width: '0px',
+    },
+    listTitleChange: {
+        fontSize: '0.79em'
     },
     listItem: {
-        width: '90%',
+        padding: '0 20px',
         marginTop: '10px',
         backgroundColor: '#f5f5f5',   
     },
     redPct: {
         color: 'red',
         fontSize: '0.79em'
-     }
-    
-  });
-
-
+    }, 
+    greenPct: {
+        color: 'green',
+        fontSize: '0.79em'
+    },
+    currenciesName: {
+        width: '0px',
+    },
+    rates: {
+        width: '30px',
+    }
+});
   
-  export default styles;
+export default styles;
