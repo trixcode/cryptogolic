@@ -18,6 +18,27 @@ const fakeCurrencies = {
       name_full: "Ethereum (ETH)",
       symbol: "ETH",
    },
+   ABC: {
+      symbol: "ABC",
+      name: "AB-Chain",
+      name_full: "AB-Chain (ABC)",
+      max_supply: 210000000,
+      icon_url: "https://assets.coinlayer.com/icons/ABC.png"
+  },
+   611: {
+      symbol: "611",
+      name: "SixEleven",
+      name_full: "SixEleven (611)",
+      max_supply: 611000,
+      icon_url: "https://assets.coinlayer.com/icons/611.png"
+},
+   ACP: {
+      symbol: "ACP",
+      name: "Anarchists Prime",
+      name_full: "Anarchists Prime (ACP)",
+      max_supply: 53760000,
+      icon_url: "https://assets.coinlayer.com/icons/ACP.png"
+   },
 }
 
 const fakeCurrenciesLive = {
@@ -25,6 +46,9 @@ const fakeCurrenciesLive = {
    rates: {
       BTC: 4119.660594,
       ETH: 142.620445,
+      611: 0.389165,
+      ABC: 59.99,
+      ACP: 0.014931,
    },
    success: true,
    target: "USD",
@@ -36,6 +60,9 @@ const fakeCurrenciesHistorical = {
    rates: {
       BTC: 4125.483815,
       ETH: 143.335275,
+      611: 0.389165,
+      ABC: 59.99,
+      ACP: 0.014931,
    }
 }
 
@@ -49,8 +76,6 @@ const mergeObjects = () => {
    })
    return fakeCurrencies
 }
-
-
 
 function* fetchCurrencies(action) {
    try {
