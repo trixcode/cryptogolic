@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -23,6 +23,7 @@ import { fetchCurrenciesStart, fetchLiveStart, fetchConvertStart, fetchDataStart
 class Header extends Component {
   state = {
     isDrawerOpen: false,
+    isSearchClicked: false,
   }
 
   componentWillMount() {
@@ -41,20 +42,45 @@ class Header extends Component {
 
   onClickHeader = () => {
     const { history } = this.props
-    history.push('/')
+    history.push('/');
+    this.setState({
+      isSearchClicked: false,
+    })
   }
 
+
+  onClickOutside = () => {
+     this.setState({
+      isSearchClicked: false,
+    })
+  }
+
+  onClickSearch = () => {
+    this.setState({
+      isSearchClicked: true,
+    })
+  }
+
+  onTypeSearch = (event) => {
+    const inputValue = event.target.value
+    const regex = new RegExp((`\\b${inputValue}`, 'gi')) 
+
+  }
+
+  burgerMenu = (text) => {
+    const { history } = this.props
+    history.push(`${text}`);
+  }
+  
   render() {
-    const { classes, currencies, live, convert, data } = this.props
-    console.log(currencies);
-    console.log(live);
-    console.log(convert);
-    console.log(data);
+    const { classes, currencies } = this.props
+    console.log(currencies)
+    
     const sideList = (
       <div className={classes.list}>
         <List>
           {['Log in', 'Sign Up', 'Titles'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem key={text} /*onClick={this.burgerMenu(text)}*/>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -85,9 +111,17 @@ class Header extends Component {
             <Typography variant="h6" color="inherit" onClick={this.onClickHeader}>
               Cryptogolic
             </Typography>
-            <IconButton color="inherit">
+
+            {
+            !this.state.isSearchClicked ? (
+            <IconButton color="inherit" onClick={this.onClickSearch}>
               <SearchIcon />
             </IconButton>
+            ) : (
+            <div className={classes.searchDiv} onBlur={this.onClickOutside}>
+              <input type="text" placeholder="__" onKeyDown={this.onTypeSearch} className={classes.searchInput}></input>
+            </div>)
+            }
           </Toolbar>
         </AppBar>
 
@@ -114,11 +148,10 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+
 const mapStateToProps = store => ({
   currencies: store.currencies,
-  live: store.live,
-  convert: store.convert,
-  data: store.data,
+  live: store.live
 })
 
 const mapDispatchToProps = dispatch => {
