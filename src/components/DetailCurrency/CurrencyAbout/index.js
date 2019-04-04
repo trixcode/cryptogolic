@@ -26,7 +26,7 @@ class CurrencyAbout extends Component {
             alt="Contemplative Reptile"
             className={classes.media}
             height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image=""
             title="Contemplative Reptile"
           />
           <CardContent>
