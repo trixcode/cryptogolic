@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
@@ -11,11 +12,15 @@ import Typography from '@material-ui/core/Typography';
 
 
 function News(props) {
-  const { classes } = props;
+  const { classes, history } = props;
+
+  const onClickNewsDetail = () => {
+    history.push('/newsdetail/')
+  }
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} onClick={onClickNewsDetail}>
       <CardActionArea>
-        <CardMedia
+        <CardMedia 
           component="img"
           className={classes.media}
           height="140"
@@ -50,4 +55,4 @@ News.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(News);
+export default withRouter(withStyles(styles)(News));
