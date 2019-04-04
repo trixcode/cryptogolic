@@ -18,7 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import styles from './styles'
-import {fetchCurrenciesStart} from '../../store/main/actions';
+import { fetchCurrenciesStart } from '../../store/main/actions';
 
 class Header extends Component {
   state = {
@@ -30,6 +30,7 @@ class Header extends Component {
     const { fetchCurrenciesStartAction } = this.props;
     fetchCurrenciesStartAction();
   }
+
   toggleDrawer = (open) => () => {
     this.setState({
       isDrawerOpen: open,
@@ -43,6 +44,7 @@ class Header extends Component {
       isSearchClicked: false,
     })
   }
+
 
   onClickOutside = () => {
      this.setState({
@@ -143,7 +145,7 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCurrenciesStartAction: () => dispatch(fetchCurrenciesStart())
+    fetchCurrenciesStartAction: () => dispatch(fetchCurrenciesStart()),
   }
 }
 

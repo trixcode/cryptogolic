@@ -3,7 +3,6 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
-import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
@@ -36,7 +35,8 @@ class CurrencyStatistic extends Component {
     console.log(statisticExample);
     return (
       <Card className={classes.card}>
-        <CardHeader
+      <div className={classes.block}>
+        <CardHeader className={classes.header}
           avatar={
             <Avatar aria-label="Recipe" className={classes.avatar}>
               R
@@ -44,19 +44,21 @@ class CurrencyStatistic extends Component {
           }
           title="Bitcoin Price"
         />
+        <div className={classes.priceBlock}>
+          <span className={classes.price}>$1000.1</span>
+          <span className={classes.pricePercent}>-1.21%</span>
+        </div>
+        </div>
         <div className={classes.root}>
-        <AppBar position="static" color='primary'>
+        <div className={classes.tabBlock}>
           <Tabs value={value} onChange={this.handleChange}>
             <Tab label="24h" />
             <Tab label="1months" />
-            <Tab label="1yeaar" />
+            <Tab label="1year" />
             <Tab label="All" />
           </Tabs>
-        </AppBar>
-        {value === 0 && <TabContainer>
-          <div>
-          <img width='100%' alt='statistic' src={statisticExample}/>
         </div>
+        {value === 0 && <TabContainer>
         <h4>Market Cap</h4>
         <p>$10.0B</p>
         <h4>Volume</h4>
@@ -67,9 +69,6 @@ class CurrencyStatistic extends Component {
         <p>$1.8K</p>
         </TabContainer>}
         {value === 1 && <TabContainer>
-          <div>
-          <img width='100%' alt='statistic' src={statisticExample}/>
-        </div>
         <h4>Market Cap</h4>
         <p>$31.0B</p>
         <h4>Volume</h4>
@@ -80,9 +79,6 @@ class CurrencyStatistic extends Component {
         <p>$3.8K</p>
         </TabContainer>}
         {value === 2 && <TabContainer>
-          <div>
-          <img width='100%' alt='statistic' src={statisticExample}/>
-        </div>
         <h4>Market Cap</h4>
         <p>$54.0B</p>
         <h4>Volume</h4>
@@ -93,9 +89,6 @@ class CurrencyStatistic extends Component {
         <p>$10.8K</p>
         </TabContainer>}
         {value === 3 && <TabContainer>
-          <div>
-          <img width='100%' alt='statistic' src={statisticExample}/>
-        </div>
         <h4>Market Cap</h4>
         <p>$71.0B</p>
         <h4>Volume</h4>

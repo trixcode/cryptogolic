@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import {  put, takeEvery } from 'redux-saga/effects';
 import * as actions from './actions';
 import * as actionTypes from './actionTypes';
 import * as Api from '../../services/api';
@@ -91,7 +91,7 @@ function* fetchCurrencies(action) {
 }
 
 function* mainSaga() {
-  yield takeEvery(actionTypes.FETCH_CURRENCIES_START, fetchCurrencies);
+   yield takeEvery(actionTypes.FETCH_CURRENCIES_START, fetchCurrencies);
 }
 
 export default mainSaga;
