@@ -62,8 +62,8 @@ class Header extends Component {
 
   burgerMenu = (text) => {
     const { history } = this.props
-    history.push(`${text}`);
-    console.log(text)
+    const link = text.replace(/\s/g, '')
+    history.push(link);
   }
   
   render() {
