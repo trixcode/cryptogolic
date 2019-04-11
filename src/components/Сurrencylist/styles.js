@@ -1,10 +1,4 @@
 const styles = theme => ({
-    change: {
-        color: 'red',
-    },
-    formControl: {
-       marginRight: '10px',     
-    },
     currencyTitle: {
         color: '#3f51b5',
     },
@@ -15,46 +9,45 @@ const styles = theme => ({
         marginTop: '20px',
         width: '100%',
         maxWidth: '100%',
-        backgroundColor: theme.palette.background.paper,
     },
-    correncyListContainer: {
-        display: 'flex',
-    },
-    formContaner: {
+    formContainer: {
         marginBottom: '10px',
-        padding: '0',
         display: 'flex',
         justifyContent: 'flex-end',
+        width: '100%',
     },
-    listItemList: {
-        padding: '10px 20px',
+    formControl: {
+        marginRight: '11%',  
+        padding: '5px 0px'   
+     },  
+    selectItem: {
+        fontSize: '0.85em' 
+    },
+    subHeaderTitle: {
+        display: 'flex',
+        width: '100%',
+        padding: '10px 60px 10px 40px',
         backgroundColor: '#3f51b5',   
     },
-    listTitleCurrency: { 
-        marginLeft: '60px',
-        width: '0px',
+    listTitle: { 
+        marginLeft: '38px',
+        width: '100%',
     },
-    listTitleChange: {
-        fontSize: '0.79em'
+    listTitleColor: {
+        color: '#ffffff',
     },
     listItem: {
-        padding: '0 20px',
         marginTop: '10px',
-        backgroundColor: '#f5f5f5',   
+        backgroundColor: '#f5f5f5', 
     },
     redPct: {
         color: 'red',
-        fontSize: '0.79em'
     }, 
     greenPct: {
         color: 'green',
-        fontSize: '0.79em'
     },
-    currenciesName: {
-        width: '0px',
-    },
-    rates: {
-        width: '30px',
+    listItemText: {
+        width: '100%',
     }
 });
   

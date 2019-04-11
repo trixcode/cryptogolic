@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import styles from './styles'
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -21,9 +22,13 @@ const СurrencyListPage = props => {
   return (
     <List dense className={classes.root}>
       <h4 className={classes.currencyTitle}>Top 100 Cryptocurrencies by Market Cap</h4>
-      <ListItem className={classes.formContaner}>
+      <div className={classes.formContainer}>
         <FormControl className={classes.formControl}>
-          <NativeSelect defaultValue={10}
+          <NativeSelect
+            classes={{
+              select: classes.selectItem,
+            }}
+            defaultValue={10}
             input={<Input
               name="name"
               id="uncontrolled-native" />}>
@@ -33,7 +38,11 @@ const СurrencyListPage = props => {
           </NativeSelect>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <NativeSelect defaultValue={0}
+          <NativeSelect
+            classes={{
+              select: classes.selectItem,
+            }}
+            defaultValue={0}
             input={<Input
               name="name"
               id="uncontrolled-native" />}>
@@ -43,23 +52,53 @@ const СurrencyListPage = props => {
             <option value={30}>price</option>
           </NativeSelect>
         </FormControl>
-      </ListItem>
-      <ListItem className={classes.listItemList} >
-      <ListItemText className={classes.listTitleCurrency} primary={'currency'} />
-      <ListItemText className={classes.rates} primary={'price'}/>
-      <span className={classes.listTitleChange}> {'change'} </span>  
-      </ListItem>
+      </div>
+      <ListSubheader className={classes.subHeaderTitle}>
+        <ListItemText
+          classes={{
+            root: classes.listTitle,
+            primary: classes.listTitleColor
+          }}
+          primary={'curenncy'} />
+        <ListItemText
+          classes={{
+            root: classes.listTitle,
+            primary: classes.listTitleColor
+          }}
+          primary={'price'} />
+        <ListItemText
+          classes={{
+            root: classes.listTitle,
+            primary: classes.listTitleColor
+          }}
+          primary={'change'} />
+      </ListSubheader>
       {Object.keys(currencies).map(key => (
-        <ListItem onClick={goToDetailCurrencyPage} className={classes.listItem} key={key} button>
+        <ListItem 
+          onClick={goToDetailCurrencyPage} 
+          className={classes.listItem} 
+          key={key}>
           <ListItemAvatar >
             <Avatar
               alt={currencies[key].name}
               src={currencies[key].icon_url}
             />
           </ListItemAvatar>
-          <ListItemText className={classes.currenciesName} primary={currencies[key].name} />
-          <ListItemText className={classes.rates} primary={currencies[key].rates + ' $'}/>
-          <span className={currencies[key].change_pct<0? classes.redPct : classes.greenPct }>{currencies[key].change_pct + ' %'} </span>  
+          <ListItemText 
+            primary={currencies[key].name} 
+            className={classes.listItemText} 
+          />
+          <ListItemText 
+            primary={currencies[key].rates + ' $'} 
+            className={classes.listItemText} 
+          />
+          <ListItemText
+            primary={currencies[key].change_pct + ' %'}
+            classes={{
+              root: classes.listItemText,
+              primary: currencies[key].change_pct < 0 ? classes.redPct : classes.greenPct
+            }}
+          />
         </ListItem>
       ))}
     </List>
