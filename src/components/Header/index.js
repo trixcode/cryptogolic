@@ -18,7 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import styles from './styles'
-import {fetchCurrenciesStart} from '../../store/main/actions';
+import { fetchCurrenciesStart, searchCurrencyByName, setBackUpCurrencyes } from '../../store/main/actions';
 
 class Header extends Component {
   state = {
@@ -30,6 +30,7 @@ class Header extends Component {
     const { fetchCurrenciesStartAction } = this.props;
     fetchCurrenciesStartAction();
   }
+
   toggleDrawer = (open) => () => {
     this.setState({
       isDrawerOpen: open,
@@ -44,6 +45,7 @@ class Header extends Component {
     })
   }
 
+
   onClickOutside = () => {
      this.setState({
       isSearchClicked: false,
@@ -51,20 +53,44 @@ class Header extends Component {
   }
 
   onClickSearch = () => {
+    const {currencies, setBackUpCurrencyesAction} = this.props;
+    setBackUpCurrencyesAction(currencies);
     this.setState({
       isSearchClicked: true,
     })
   }
 
-  onTypeSearch = (event) => {
-    const inputValue = event.target.value
-    const regex = new RegExp((`\\b${inputValue}`, 'gi')) 
+  resetSearch = (event) => {
+    if (event.keyCode === 8) {
+      const { backUpCurrencyes } = this.props;
+      this.searchCurrencyes(backUpCurrencyes)
+    }
+  }
 
+  searchCurrencyes = (currencies) => {
+    const { searchCurrencyByNameAction } = this.props;
+    const { searchValue } = this.state;
+    const searchedCurrencyes = {};
+    const regex = new RegExp(`\\b${searchValue}`, 'gi')
+    Object.keys(currencies).map(key => {
+      if(regex.test(currencies[key].name)) {
+        return searchedCurrencyes[key] = currencies[key]
+      }
+    })
+    searchCurrencyByNameAction(searchedCurrencyes)
+  }
+
+  onTypeSearch = (event) => {
+    const { currencies } = this.props;
+    this.setState({
+      searchValue: event.target.value
+    }, ()=>this.searchCurrencyes(currencies))
   }
 
   burgerMenu = (text) => {
     const { history } = this.props
-    history.push(`${text}`);
+    const link = text.replace(/\s/g, '')
+    history.push(link);
   }
   
   render() {
@@ -74,20 +100,13 @@ class Header extends Component {
     const sideList = (
       <div className={classes.list}>
         <List>
-          {['Log in', 'Sign Up', 'Titles'].map((text, index) => (
-            <ListItem key={text} /*onClick={this.burgerMenu(text)}*/>
+          {['Log in', 'Sign Up', 'News', 'About us', 'Contact us', 'Reclame' ].map((text, index) => (
+            <Fragment key={text}>
+            <ListItem  onClick={() => this.burgerMenu(text)}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['About us', 'Contact us', 'Reclame'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+            <Divider /></Fragment>
           ))}
         </List>
       </div>
@@ -114,7 +133,14 @@ class Header extends Component {
             </IconButton>
             ) : (
             <div className={classes.searchDiv} onBlur={this.onClickOutside}>
-              <input type="text" placeholder="__" onKeyDown={this.onTypeSearch} className={classes.searchInput}></input>
+              <input type="text" 
+                      placeholder="search" 
+                      onChange={this.onTypeSearch} 
+                      className={classes.searchInput}
+                      onKeyUp={this.resetSearch}/>
+                      
+        
+
             </div>)
             }
           </Toolbar>
@@ -143,15 +169,17 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-
 const mapStateToProps = store => ({
   currencies: store.currencies,
-  live: store.live
+  live: store.live,
+  backUpCurrencyes: store.backUpCurrencyes, 
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCurrenciesStartAction: () => dispatch(fetchCurrenciesStart())
+    fetchCurrenciesStartAction: () => dispatch(fetchCurrenciesStart()),
+    searchCurrencyByNameAction: (searchedCurrencyes) => dispatch(searchCurrencyByName(searchedCurrencyes)),
+    setBackUpCurrencyesAction: (currencies) => dispatch(setBackUpCurrencyes(currencies))
   }
 }
 
