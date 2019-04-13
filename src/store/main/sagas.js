@@ -68,7 +68,6 @@ const fakeCurrenciesHistorical = {
 
 const mergeObjects = () => {
    Object.keys(fakeCurrencies).map(key => {
-      console.log('asdad')
       const change = fakeCurrenciesLive.rates[key] - fakeCurrenciesHistorical.rates[key];
       fakeCurrencies[key].rates = (fakeCurrenciesLive.rates[key]).toFixed(2);
       fakeCurrencies[key].change = change
@@ -83,7 +82,6 @@ function* fetchCurrencies(action) {
       // const currenciesLive = yield call(Api.fetchCurrenciesLive)
       // const currenciesHistorical = yield call(Api.fetchCurrenciesHistorical)
       const currencies = mergeObjects();
-      console.log('currencies', currencies)
       yield put(actions.fetchCurrenciesSuccess(currencies));
    } catch (e) {
       yield put({type: "FETCH_CURRENCIES_FAILED", message: e.message});
