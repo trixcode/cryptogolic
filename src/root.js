@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import NewsDetailPage from './pages/NewsDetailPage';
 import NewsPage from './pages/NewsPage';
 import DetailCurrrencyPage from "./pages/DetailCurrencyPage";
-import SettingPage from "./pages/SettingPage"
+import SettingsPage from "./pages/SettingsPage"
 
 function AppRouter() {
   return (
@@ -13,7 +13,7 @@ function AppRouter() {
       <Route path="/currency/" component={DetailCurrrencyPage} />
       <Route path="/newsdetail/" exact component={NewsDetailPage} />
       <Route path="/news/" component={NewsPage} />
-      <Route path="/setting/" component={SettingPage}/>
+      <Route path="/settings/" component={SettingsPage}/>
     </BrowserRouter>
   );
 }

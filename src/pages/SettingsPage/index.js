@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid'
-import Setting from '../../components/Setting';
+import Settings from '../../components/Settings';
 import Header from '../../components/Header'
 
-class SettingPage extends Component {
+class SettingsPage extends Component {
   render() {
     return (
       <Grid>
         <Header/>
-        <Setting />
+        <Settings />
       </Grid>
     )
   }
 }
 
-export default SettingPage;
+export default SettingsPage;
