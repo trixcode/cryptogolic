@@ -1,9 +1,9 @@
-import { FETCH_CURRENCIES_SUCCESS, SEARCH_CURRENCY_BY_NAME, SET_BACKUP_CURRENCIES } from './actionTypes';
+import {SET_PRIMARY_CURRENCY, FETCH_CURRENCIES_SUCCESS, SEARCH_CURRENCY_BY_NAME, SET_BACKUP_CURRENCIES } from './actionTypes';
 
 const initialState = {
   currencies: {},
   backUpCurrencyes: {},
-  live: {}
+  primaryCurrencyValue: null,
 }
 const main = (state = initialState, action) => {
   switch (action.type) {
@@ -18,6 +18,10 @@ const main = (state = initialState, action) => {
     case SET_BACKUP_CURRENCIES:
       return Object.assign({}, state, {
         backUpCurrencyes: action.currencies
+      })
+    case SET_PRIMARY_CURRENCY:
+      return Object.assign({}, state, {
+        primaryCurrencyValue: action.primaryCurrencyValue
       })
     default:
       return state

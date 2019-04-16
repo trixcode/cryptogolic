@@ -1,4 +1,4 @@
-import { FETCH_CURRENCIES_START, FETCH_CURRENCIES_SUCCESS, SET_BACKUP_CURRENCIES, SEARCH_CURRENCY_BY_NAME} from './actionTypes'
+import { SET_PRIMARY_CURRENCY, FETCH_CURRENCIES_START, FETCH_CURRENCIES_SUCCESS, SET_BACKUP_CURRENCIES, SEARCH_CURRENCY_BY_NAME} from './actionTypes'
 
 export const fetchCurrenciesStart = () => {
   return {
@@ -17,5 +17,10 @@ export const searchCurrencyByName = (searchedCurrencyes) => {
 export const setBackUpCurrencyes = (currencies) => {
   return {
     type: SET_BACKUP_CURRENCIES,
-    currencies,
+    currencies, 
+}};
+export const setPrimaryCurrency = (primaryCurrencyValue) => {
+  return {
+    type: SET_PRIMARY_CURRENCY,
+    primaryCurrencyValue,
 }};

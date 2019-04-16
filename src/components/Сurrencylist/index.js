@@ -6,7 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import styles from './styles'
+import styles from './styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
@@ -14,12 +14,27 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Input from '@material-ui/core/Input';
 
+const setNewCurrencies = (currencies)=>{
+  const primaryCurrency = JSON.parse(localStorage.getItem('primaryCurreny'));
+  if (primaryCurrency && Object.entries(currencies).length !== 0){
+      const newCurrencies = Object.assign({0: currencies[primaryCurrency.value]}, currencies)
+      delete  newCurrencies[primaryCurrency.value];
+      console.log(newCurrencies)
+      console.log(currencies)
+      return newCurrencies
+  } else {
+      return currencies
+  }
+};
+
 const СurrencyListPage = props => {
   const { history, classes, currencies } = props;
+  const newCurrencies = setNewCurrencies(currencies)
   const goToDetailCurrencyPage = () => {
     history.push('./currency')
-  }
-  return (
+  };
+  
+  return ( 
     <List dense className={classes.root}>
       <h4 className={classes.currencyTitle}>Top 100 Cryptocurrencies by Market Cap</h4>
       <div className={classes.formContainer}>
@@ -73,37 +88,37 @@ const СurrencyListPage = props => {
           }}
           primary={'change'} />
       </ListSubheader>
-      {Object.keys(currencies).map(key => (
-        <ListItem 
-          onClick={goToDetailCurrencyPage} 
-          className={classes.listItem} 
-          key={key}>
-          <ListItemAvatar >
-            <Avatar
-              alt={currencies[key].name}
-              src={currencies[key].icon_url}
+      {Object.keys(newCurrencies).map(key => (
+          <ListItem 
+            onClick={goToDetailCurrencyPage} 
+            className={classes.listItem} 
+            key={key}>
+            <ListItemAvatar >
+              <Avatar
+                alt={newCurrencies[key].name}
+                src={newCurrencies[key].icon_url}
+              />
+            </ListItemAvatar>
+            <ListItemText 
+              primary={newCurrencies[key].name} 
+              className={classes.listItemText} 
             />
-          </ListItemAvatar>
-          <ListItemText 
-            primary={currencies[key].name} 
-            className={classes.listItemText} 
-          />
-          <ListItemText 
-            primary={currencies[key].rates + ' $'} 
-            className={classes.listItemText} 
-          />
-          <ListItemText
-            primary={currencies[key].change_pct + ' %'}
-            classes={{
-              root: classes.listItemText,
-              primary: currencies[key].change_pct < 0 ? classes.redPct : classes.greenPct
-            }}
-          />
-        </ListItem>
+            <ListItemText 
+              primary={newCurrencies[key].rates + ' $'} 
+              className={classes.listItemText} 
+            />
+            <ListItemText
+              primary={newCurrencies[key].change_pct + ' %'}
+              classes={{
+                root: classes.listItemText,
+                primary: newCurrencies[key].change_pct < 0 ? classes.redPct : classes.greenPct
+              }}
+            />
+          </ListItem>
       ))}
     </List>
   );
-}
+};
 
 СurrencyListPage.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -112,6 +127,8 @@ const СurrencyListPage = props => {
 
 const mapStateToProps = store => ({
   currencies: store.currencies,
-})
+  storePrimaryValue: store.primaryCurrencyValue,
+});
+
 
 export default connect(mapStateToProps, null)(withRouter(withStyles(styles)(СurrencyListPage)));

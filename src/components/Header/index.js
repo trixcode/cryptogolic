@@ -94,13 +94,11 @@ class Header extends Component {
   }
   
   render() {
-    const { classes, currencies } = this.props
-    console.log(currencies)
-    
+    const { classes } = this.props
     const sideList = (
       <div className={classes.list}>
         <List>
-          {['Log in', 'Sign Up', 'News', 'About us', 'Contact us', 'Reclame' ].map((text, index) => (
+          {['Log in', 'Sign Up', 'News', 'About us', 'Contact us', 'Settings' ].map((text, index) => (
             <Fragment key={text}>
             <ListItem  onClick={() => this.burgerMenu(text)}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
@@ -138,9 +136,6 @@ class Header extends Component {
                       onChange={this.onTypeSearch} 
                       className={classes.searchInput}
                       onKeyUp={this.resetSearch}/>
-                      
-        
-
             </div>)
             }
           </Toolbar>

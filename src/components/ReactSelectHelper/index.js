@@ -119,26 +119,8 @@ const components = {
   ValueContainer,
 };
 class IntegrationReactSelect extends React.Component {
-  state = {
-    primaryCurreny: null,
-  };
-  componentWillMount() {
-    const primaryCurrency = JSON.parse(localStorage.getItem('primaryCurreny'));
-      if (primaryCurrency) {
-        this.setState({primaryCurrency})
-      }
-  }
-
-  handleChange =()=> value => {
-    this.setState({
-      primaryCurrency: value,
-    });
-    localStorage.setItem('primaryCurreny', JSON.stringify(value))
-  };
-
   render() {
-    const { classes, theme, suggestions } = this.props;
-    const { primaryCurrency } = this.state;
+    const { classes, theme, suggestions, plaseholder, onSelectChange, value } = this.props;
     const selectStyles = {
       input: base => ({
         ...base,
@@ -158,9 +140,9 @@ class IntegrationReactSelect extends React.Component {
             styles={selectStyles}
             options={suggestions}
             components={components}
-            value={primaryCurrency}
-            onChange={this.handleChange('single')}
-            placeholder="Search a country (start with a)"
+            value={value}
+            onChange={onSelectChange}
+            placeholder={plaseholder}
             isClearable
           />
           <div className={classes.divider} />
@@ -172,7 +154,9 @@ class IntegrationReactSelect extends React.Component {
 
 IntegrationReactSelect.propTypes = {
   classes: PropTypes.object.isRequired,
-  
+  plaseholder: PropTypes.string.isRequired,
   suggestions: PropTypes.array.isRequired,
+  onSelectChange: PropTypes.func.isRequired,
+ 
 };
 export default withStyles(styles, {withTheme: true})(IntegrationReactSelect);

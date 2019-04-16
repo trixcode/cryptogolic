@@ -4,6 +4,13 @@ import * as actionTypes from './actionTypes';
 import * as Api from '../../services/api';
 
 const fakeCurrencies = {
+   ACP: {
+      symbol: "ACP",
+      name: "Anarchists Prime",
+      name_full: "Anarchists Prime (ACP)",
+      max_supply: 53760000,
+      icon_url: "https://assets.coinlayer.com/icons/ACP.png"
+   },
    BTC: {
       icon_url: "https://assets.coinlayer.com/icons/BTC.png",
       max_supply: 21000000,
@@ -32,13 +39,7 @@ const fakeCurrencies = {
       max_supply: 611000,
       icon_url: "https://assets.coinlayer.com/icons/611.png"
 },
-   ACP: {
-      symbol: "ACP",
-      name: "Anarchists Prime",
-      name_full: "Anarchists Prime (ACP)",
-      max_supply: 53760000,
-      icon_url: "https://assets.coinlayer.com/icons/ACP.png"
-   },
+  
 }
 
 const fakeCurrenciesLive = {
